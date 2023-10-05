@@ -1,3 +1,3 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using Codility_lessons;
 
-Console.WriteLine("Hello, World!");
+Console.WriteLine(Arrays.OddOccurrencesInArray(new int[] { 10,10, 4, 7, 4,7, 4, 4,4,4,8,8,8,1,1}));

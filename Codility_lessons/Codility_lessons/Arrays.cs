@@ -25,4 +25,25 @@ public class Arrays
 
         return finalArray;
     }
+    
+    public static int OddOccurrencesInArray(int[] array)
+    {
+        int[] numberOfOccurrences = new int[array.Max() + 1];
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            numberOfOccurrences[array[i]]++;
+        }
+        for (int i = 0; i < numberOfOccurrences.Length; i++)
+        {
+            if(numberOfOccurrences[i] % 2 != 0)
+                return i;
+        }
+
+        return -1;
+        
+        // return numberOfOccurrences
+        //     .Select((n, index) => (n, index))
+        //     .FirstOrDefault(x => x.n % 2 != 0).index;
+    }
 }
