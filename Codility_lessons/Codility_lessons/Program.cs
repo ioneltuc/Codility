@@ -1,3 +1,3 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using Codility_lessons;
 
-Console.WriteLine("Hello, World!");
+CountingElements.PermCheck(new int[] {7});
