@@ -45,4 +45,34 @@ public class PrefixSums
 
         return (b / k) - (a / k);
     }
+
+    public static int[] GenomicRangeQuery(string s, int[] p, int[] q)
+    {
+        int[] result = new int[p.Length];
+
+        for (int i = 0; i < result.Length; i++)
+        {
+            string nucleotides = s.Substring(p[i], q[i] - p[i] + 1);
+
+            char nucleotide = nucleotides.Min();
+
+            switch (nucleotide)
+            {
+                case 'A' :
+                    result[i] = 1;
+                    break;
+                case 'C' :
+                    result[i] = 2;
+                    break;
+                case 'G' :
+                    result[i] = 3;
+                    break;
+                case 'T' :
+                    result[i] = 4;
+                    break;
+            }
+        }
+
+        return result;
+    }
 }
