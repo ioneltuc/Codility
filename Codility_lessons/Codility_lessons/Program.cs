@@ -1,3 +1,3 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using Codility_lessons;
 
-Console.WriteLine("Hello, World!");
+PrefixSums.PassingCars(new int[] {0,1,0,1,1});
