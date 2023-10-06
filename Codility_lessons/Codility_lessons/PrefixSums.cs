@@ -5,18 +5,18 @@ public class PrefixSums
     public static int PassingCars(int[] cars)
     {
         int pairsOfCarsPassed = 0;
-        
+
         for (int i = 0; i < cars.Length; i++)
         {
             if (cars[i] == 0)
             {
                 int[] remainingCars = new int[cars.Length - i];
-                
+
                 Array.Copy(
-                    cars, 
-                    i, 
-                    remainingCars, 
-                    0, 
+                    cars,
+                    i,
+                    remainingCars,
+                    0,
                     remainingCars.Length);
 
                 pairsOfCarsPassed += remainingCars.Sum();
@@ -28,16 +28,21 @@ public class PrefixSums
 
     public static int CountDiv(int a, int b, int k)
     {
-        int divisible = 0;
+        // int divisible = 0;
+        //
+        // for (int i = a; i <= b; i++)
+        // {
+        //     if (i % k == 0)
+        //     {
+        //         divisible++;
+        //     }
+        // }
+        //
+        // return divisible;
 
-        for (int i = a; i <= b; i++)
-        {
-            if (i % k == 0)
-            {
-                divisible++;
-            }
-        }
+        if (a % k == 0)
+            return (b / k) - (a / k) + 1;
 
-        return divisible;
+        return (b / k) - (a / k);
     }
 }

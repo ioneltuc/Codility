@@ -1,3 +1,3 @@
 ﻿using Codility_lessons;
 
-PrefixSums.PassingCars(new int[] {0,1,0,1,1});
+PrefixSums.CountDiv(2, 400, 21);
