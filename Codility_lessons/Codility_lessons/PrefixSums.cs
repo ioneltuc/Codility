@@ -25,4 +25,19 @@ public class PrefixSums
 
         return pairsOfCarsPassed;
     }
+
+    public static int CountDiv(int a, int b, int k)
+    {
+        int divisible = 0;
+
+        for (int i = a; i <= b; i++)
+        {
+            if (i % k == 0)
+            {
+                divisible++;
+            }
+        }
+
+        return divisible;
+    }
 }
