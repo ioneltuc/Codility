@@ -27,4 +27,21 @@ public class MaximumSliceProblem
 
         return maxProfit < 0 ? 0 : maxProfit;
     }
+
+    public static int MaxSliceSum(int[] a)
+    {
+        int maxEnding = 0;
+        int maxSlice = 0;
+
+        if (a.All(x => x < 0))
+            return a.Max();
+        
+        foreach (var item in a)
+        {
+            maxEnding = int.Max(0, maxEnding + item);
+            maxSlice = int.Max(maxSlice, maxEnding);
+        }
+
+        return maxSlice;
+    }
 }
