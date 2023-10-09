@@ -4,26 +4,22 @@ public class PrefixSums
 {
     public static int PassingCars(int[] cars)
     {
-        int pairsOfCarsPassed = 0;
+        int goingEstCars = 0;
+        int passingCars = 0;
 
         for (int i = 0; i < cars.Length; i++)
         {
             if (cars[i] == 0)
-            {
-                int[] remainingCars = new int[cars.Length - i];
+                goingEstCars++;
 
-                Array.Copy(
-                    cars,
-                    i,
-                    remainingCars,
-                    0,
-                    remainingCars.Length);
+            if (cars[i] == 1)
+                passingCars += goingEstCars;
 
-                pairsOfCarsPassed += remainingCars.Sum();
-            }
+            if (passingCars > 1000000000)
+                return -1;
         }
 
-        return pairsOfCarsPassed;
+        return passingCars;
     }
 
     public static int CountDiv(int a, int b, int k)
