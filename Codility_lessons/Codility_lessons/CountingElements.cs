@@ -60,4 +60,34 @@ public class CountingElements
 
         return -1;
     }
+
+    public static int[] MaxCounters(int n, int[] array)
+    {
+        int[] counters = new int[n];
+        int currentMaxCounter = 0;
+        int lastMaxCounter = 0;
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] > n)
+            {
+                lastMaxCounter = currentMaxCounter;
+            }
+            else
+            {
+                if (counters[array[i] - 1] < lastMaxCounter)
+                    counters[array[i] - 1] = lastMaxCounter;
+
+                counters[array[i] - 1]++;
+
+                currentMaxCounter = Math.Max(counters[array[i] - 1], currentMaxCounter);
+            }
+        }
+
+        for (int i = 0; i < counters.Length; i++)
+            if (counters[i] < lastMaxCounter)
+                counters[i] = lastMaxCounter;
+
+        return counters;
+    }
 }
