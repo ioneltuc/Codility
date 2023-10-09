@@ -87,4 +87,32 @@ public class StacksAndQueues
 
         return aliveFishes;
     }
+
+    public static int Nesting(string s)
+    {
+        if (s.Length % 2 != 0)
+            return 0;
+
+        Stack<char> openBrackets = new Stack<char>();
+
+        foreach (char c in s)
+        {
+            if (c == '(')
+            {
+                openBrackets.Push(c);
+            }
+            else
+            {
+                if (openBrackets.Count == 0)
+                    return 0;
+
+                openBrackets.Pop();
+            }
+        }
+
+        if (openBrackets.Count != 0)
+            return 0;
+
+        return 1;
+    }
 }
