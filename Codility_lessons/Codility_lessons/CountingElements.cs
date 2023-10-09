@@ -4,24 +4,15 @@ public class CountingElements
 {
     public static int PermCheck(int[] array)
     {
-        if (array.Length == 1)
-        {
-            if (array.First() == 1)
-                return 1;
-
+        if(array.Length != array.Max())
             return 0;
-        }
 
-        int[] occurrences = new int[array.Max() + 1];
+        List<int> permutation = Enumerable
+            .Range(1, array.Max())
+            .ToList();
 
-        for (int i = 0; i < array.Length; i++)
-            occurrences[array[i]]++;
-
-        for (int i = 1; i < occurrences.Length; i++)
-        {
-            if (occurrences[i] != 1)
-                return 0;
-        }
+        if (array.Distinct().Count() != array.Length || permutation.Except(array).Any())
+            return 0;
 
         return 1;
     }
@@ -52,24 +43,18 @@ public class CountingElements
 
     public static int FrogRiverOne(int x, int[] fallingLeaves)
     {
-        bool isLastLeave = false;
-        
+        int[] requiredLeaves = Enumerable.Range(1, x).ToArray();
+
+        HashSet<int> currentLeaves = new HashSet<int>();
+
         for (int i = 0; i < fallingLeaves.Length; i++)
         {
-            int[] potentialResult = new int[i + 1];
-            Array.Copy(fallingLeaves, potentialResult, i + 1);
+            currentLeaves.Add(fallingLeaves[i]);
 
-            int[] occurences = new int[potentialResult.Max()];
+            if (currentLeaves.Count < requiredLeaves.Length)
+                continue;
 
-            for (int j = 0; j < potentialResult.Length; j++)
-            {
-                if (potentialResult[j] == x)
-                    isLastLeave = true;
-
-                occurences[potentialResult[j] - 1]++;
-            }
-
-            if (!occurences.Contains(0) && isLastLeave)
+            if (!requiredLeaves.Except(currentLeaves).Any())
                 return i;
         }
 
