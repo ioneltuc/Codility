@@ -44,4 +44,23 @@ public class MaximumSliceProblem
 
         return maxSlice;
     }
+
+    public static int MaxDoubleSliceSum(int[] a)
+    {
+        int[] maxSumStartingSlice = new int[a.Length];
+        int[] maxSumEndingSlice = new int[a.Length];
+
+        for (int i = a.Length - 2; i > 0; i--)
+            maxSumStartingSlice[i] = Math.Max(0, maxSumStartingSlice[i] + a[i]);
+
+        for (int i = 1; i < a.Length - 1; i++)
+            maxSumEndingSlice[i] = Math.Max(0, maxSumEndingSlice[i] + a[i]);
+
+        int maxDoubleSliceSum = 0;
+        
+        for (int i = 0; i < a.Length - 2; i++)
+            maxDoubleSliceSum = Math.Max(maxDoubleSliceSum, maxSumStartingSlice[i] + maxSumEndingSlice[i + 2]);
+
+        return maxDoubleSliceSum;
+    }
 }
