@@ -28,22 +28,22 @@ public class Arrays
     
     public static int OddOccurrencesInArray(int[] array)
     {
-        int[] numberOfOccurrences = new int[array.Max() + 1];
+        Dictionary<int, int> occurrences = new Dictionary<int, int>();
 
         for (int i = 0; i < array.Length; i++)
         {
-            numberOfOccurrences[array[i]]++;
-        }
-        for (int i = 0; i < numberOfOccurrences.Length; i++)
-        {
-            if(numberOfOccurrences[i] % 2 != 0)
-                return i;
+            if (occurrences.ContainsKey(array[i]))
+            {
+                int count = occurrences[array[i]];
+                count++;
+                occurrences[array[i]] = count;
+            }
+            else
+            {
+                occurrences.Add(array[i], 1);
+            }
         }
 
-        return -1;
-        
-        // return numberOfOccurrences
-        //     .Select((n, index) => (n, index))
-        //     .FirstOrDefault(x => x.n % 2 != 0).index;
+        return occurrences.First(x => x.Value % 2 != 0).Key;
     }
 }
