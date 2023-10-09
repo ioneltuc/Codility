@@ -51,4 +51,40 @@ public class StacksAndQueues
 
         return 0;
     }
+
+    public static int Fish(int[] a, int[] b)
+    {
+        if (a.Length == 0)
+            return 0;
+
+        int aliveFishes = a.Length;
+        
+        Stack<int> downstreamFishes = new Stack<int>();
+
+        for (int i = 0; i < a.Length; i++)
+        {
+            if (b[i] == 1)
+            {
+                downstreamFishes.Push(a[i]);
+            }
+            else
+            {
+                while (downstreamFishes.Count != 0)
+                {
+                    if (downstreamFishes.Peek() > a[i])
+                    {
+                        aliveFishes--;
+                        break;
+                    }
+                    else
+                    {
+                        aliveFishes--;
+                        downstreamFishes.Pop();
+                    }
+                }
+            }
+        }
+
+        return aliveFishes;
+    }
 }
