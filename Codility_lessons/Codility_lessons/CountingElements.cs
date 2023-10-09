@@ -19,26 +19,21 @@ public class CountingElements
 
     public static int MissingInteger(int[] array)
     {
-        if (array.Any(x => x < 1))
-            return 1;
+        array = array.Where(x => x > 0).Distinct().ToArray();
 
-        if (array.Length == 1)
+        Array.Sort(array);
+
+        int smallestInteger = 1;
+
+        for (int i = 0; i < array.Length; i++)
         {
-            if (array[0] != 1)
-                return array[0] - 1;
+            if (array[i] == smallestInteger)
+                smallestInteger++;
+            else
+                break;
         }
-        
-        int[] arrayNoDuplicates = array.Distinct().ToArray();
 
-        int[] range = Enumerable
-            .Range(1, arrayNoDuplicates.Max() - arrayNoDuplicates.Min() + 1)
-            .ToArray();
-
-        int[] missingElements = range.Except(arrayNoDuplicates).ToArray();
-
-        int diff = range.Sum() - arrayNoDuplicates.Sum();
-
-        return diff == 0 ? array.Max() + 1 : missingElements.Min();
+        return smallestInteger;
     }
 
     public static int FrogRiverOne(int x, int[] fallingLeaves)
