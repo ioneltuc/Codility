@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using Codility_lessons;
 
-using Codility_lessons;
-
-SieveOfEratosthenes.CountNonDivisible(new int[] {3,1,2,3,6});
+var sieveTasks = new SieveOfEratosthenes();
+sieveTasks.CountSemiprimes(26, new int[]{1,4,16}, new int[] {26,10,20});
