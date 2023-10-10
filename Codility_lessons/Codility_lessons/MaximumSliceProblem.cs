@@ -35,7 +35,7 @@ public class MaximumSliceProblem
 
         if (a.All(x => x < 0))
             return a.Max();
-        
+
         foreach (var item in a)
         {
             maxEnding = int.Max(0, maxEnding + item);
@@ -47,19 +47,18 @@ public class MaximumSliceProblem
 
     public static int MaxDoubleSliceSum(int[] a)
     {
-        int[] maxSumStartingSlice = new int[a.Length];
-        int[] maxSumEndingSlice = new int[a.Length];
+        int[] slice1 = new int[a.Length];
+        int[] slice2 = new int[a.Length];
+        int maxDoubleSliceSum = 0;
+
+        for (int i = 1; i < slice1.Length - 1; i++)
+            slice1[i] = Math.Max(0, slice1[i - 1] + a[i]);
 
         for (int i = a.Length - 2; i > 0; i--)
-            maxSumStartingSlice[i] = Math.Max(0, maxSumStartingSlice[i] + a[i]);
+            slice2[i] = Math.Max(0, slice2[i + 1] + a[i]);
 
         for (int i = 1; i < a.Length - 1; i++)
-            maxSumEndingSlice[i] = Math.Max(0, maxSumEndingSlice[i] + a[i]);
-
-        int maxDoubleSliceSum = 0;
-        
-        for (int i = 0; i < a.Length - 2; i++)
-            maxDoubleSliceSum = Math.Max(maxDoubleSliceSum, maxSumStartingSlice[i] + maxSumEndingSlice[i + 2]);
+            maxDoubleSliceSum = Math.Max(maxDoubleSliceSum, slice1[i - 1] + slice2[i + 1]);
 
         return maxDoubleSliceSum;
     }
