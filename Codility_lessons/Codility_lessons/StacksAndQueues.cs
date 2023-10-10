@@ -1,3 +1,5 @@
+using System.Collections;
+
 namespace Codility_lessons;
 
 public class StacksAndQueues
@@ -114,5 +116,29 @@ public class StacksAndQueues
             return 0;
 
         return 1;
+    }
+
+    public static int StoneWall(int[] heights)
+    {
+        int blocksCout = 0;
+        Stack<int> neededBlocks = new Stack<int>();
+
+        for (int i = 0; i < heights.Length; i++)
+        {
+            while (neededBlocks.Count > 0 && neededBlocks.Peek() > heights[i])
+                neededBlocks.Pop();
+
+            if (neededBlocks.Count == 0)
+            {
+                neededBlocks.Push(heights[i]);
+                blocksCout++;
+            }else if (neededBlocks.Peek() < heights[i])
+            {
+                neededBlocks.Push(heights[i]);
+                blocksCout++;
+            }
+        }
+
+        return blocksCout;
     }
 }
