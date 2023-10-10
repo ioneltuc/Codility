@@ -45,4 +45,42 @@ public class PrimeAndCompositeNumbers
     {
         return 2 * (a + b);
     }
+
+    public int Flags(int[] mountain)
+    {
+        List<Peak> peaks = new List<Peak>();
+        
+        for (int i = 1; i < mountain.Length; i++)
+        {
+            if (mountain[i] > mountain[i - 1] && mountain[i] > mountain[i + 1])
+            {
+                var peak = new Peak(mountain[i], i);
+                peaks.Add(peak);
+            }
+        }
+
+        return 0;
+    }
+
+    private class Peak
+    {
+        private int _height;
+        private int _index;
+        
+        public Peak(int height, int index)
+        {
+            _height = height;
+            _index = index;
+        }
+
+        public int GetHeight()
+        {
+            return _height;
+        }
+
+        public int GetIndex()
+        {
+            return _index;
+        }
+    }
 }

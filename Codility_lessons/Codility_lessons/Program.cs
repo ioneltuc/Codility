@@ -2,4 +2,5 @@
 
 using Codility_lessons;
 
-PrimeAndCompositeNumbers.MinPerimeterRectangle(36);
+var flags = new PrimeAndCompositeNumbers();
+flags.Flags(new int[] {1, 3, 2});
