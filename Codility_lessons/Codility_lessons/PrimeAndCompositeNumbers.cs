@@ -46,41 +46,50 @@ public class PrimeAndCompositeNumbers
         return 2 * (a + b);
     }
 
-    public int Flags(int[] mountain)
+    public static int Flags(int[] mountain)
     {
-        List<Peak> peaks = new List<Peak>();
-        
-        for (int i = 1; i < mountain.Length; i++)
+        bool[] peaks = CreatePeaks(mountain);
+        int numberOfPeaks = peaks.Where(x => x == true).Count();
+
+        for (int i = numberOfPeaks; i > 0; i--)
         {
-            if (mountain[i] > mountain[i - 1] && mountain[i] > mountain[i + 1])
+            if (CheckTakeFlags(i, peaks))
+                return i;
+        }
+
+        return numberOfPeaks;
+    }
+
+    private static bool[] CreatePeaks(int[] mountain)
+    {
+        bool[] peaks = Enumerable.Repeat(false, mountain.Length).ToArray();
+
+        for (int i = 1; i < mountain.Length - 1; i++)
+            if (mountain[i] > Math.Max(mountain[i - 1], mountain[i + 1]))
+                peaks[i] = true;
+
+        return peaks;
+    }
+
+    private static bool CheckTakeFlags(int countToCheck, bool[] mountainPeaks)
+    {
+        bool[] peaks = mountainPeaks;
+        int flags = countToCheck;
+        int pos = 0;
+
+        while (pos < peaks.Length && flags > 0)
+        {
+            if (peaks[pos])
             {
-                var peak = new Peak(mountain[i], i);
-                peaks.Add(peak);
+                flags--;
+                pos += countToCheck;
+            }
+            else
+            {
+                pos++;
             }
         }
 
-        return 0;
-    }
-
-    private class Peak
-    {
-        private int _height;
-        private int _index;
-        
-        public Peak(int height, int index)
-        {
-            _height = height;
-            _index = index;
-        }
-
-        public int GetHeight()
-        {
-            return _height;
-        }
-
-        public int GetIndex()
-        {
-            return _index;
-        }
+        return flags == 0;
     }
 }

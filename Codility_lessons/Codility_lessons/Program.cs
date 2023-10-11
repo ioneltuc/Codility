@@ -2,5 +2,3 @@
 
 using Codility_lessons;
 
-var flags = new PrimeAndCompositeNumbers();
-flags.Flags(new int[] {1, 3, 2});
