@@ -79,4 +79,33 @@ public class CaterpillarMethod
 
         return trianglesCount;
     }
+
+    public static int MinAbsSumOfTwo(int[] a)
+    {
+        Array.Sort(a);
+        
+        int front = 0;
+        int back = a.Length - 1;
+        int minAbsSumOfTwo = int.MaxValue;
+        int currentSum = 0;
+        int currentAbsSum = 0;
+        
+        while (front <= back)
+        {
+            currentSum = a[front] + a[back];
+            currentAbsSum = Math.Abs(currentSum);
+
+            if (currentAbsSum < minAbsSumOfTwo)
+                minAbsSumOfTwo = currentAbsSum;
+
+            if (currentSum < 0)
+                front++;
+            else if (currentSum > 0)
+                back--;
+            else if (currentSum == 0)
+                return 0;
+        }
+
+        return minAbsSumOfTwo;
+    }
 }

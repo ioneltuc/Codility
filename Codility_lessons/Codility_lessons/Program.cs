@@ -8,4 +8,6 @@ using Codility_lessons;
 
 // CaterpillarMethod.CountDistinctSlices(6,new int[] {3,4,5,5,2});
 
-CaterpillarMethod.CountTriangles(new int[] {10,2,5,1,8,12});
+// CaterpillarMethod.CountTriangles(new int[] {10,2,5,1,8,12});
+
+CaterpillarMethod.MinAbsSumOfTwo(new int[] {1,4,-3});
