@@ -53,8 +53,30 @@ public class CaterpillarMethod
         return distinctSlicesCount;
     }
 
-    public static bool IsSliceDistinct(int[] slice)
+    private static bool IsSliceDistinct(int[] slice)
     {
         return slice.Length == slice.Distinct().Count();
+    }
+
+    public static int CountTriangles(int[] a)
+    {
+        Array.Sort(a);
+        
+        int trianglesCount = 0;
+
+        for (int i = 0; i < a.Length; i++)
+        {
+            int k = i + 2;
+            
+            for (int j = i + 1; j < a.Length; j++)
+            {
+                while (k < a.Length && a[i] + a[j] > a[k])
+                    k++;
+
+                trianglesCount += k - j - 1;
+            }
+        }
+
+        return trianglesCount;
     }
 }
